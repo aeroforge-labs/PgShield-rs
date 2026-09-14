@@ -38,7 +38,7 @@ impl QueryFirewall {
 
     pub fn inspect_statement(&self, raw_sql: &str) -> Result<(), RuleViolation> {
         let dialect = PostgreSqlDialect {};
-        
+
         let ast = match Parser::parse_sql(&dialect, raw_sql) {
             Ok(statements) => statements,
             Err(e) => {

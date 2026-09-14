@@ -81,7 +81,7 @@ impl Decoder for PgWireCodec {
 
         let tag = src[0];
         let len = i32::from_be_bytes([src[1], src[2], src[3], src[4]]) as usize;
-        
+
         let total_frame_len = 1 + len;
         if src.len() < total_frame_len {
             return Ok(None);
@@ -94,11 +94,15 @@ impl Decoder for PgWireCodec {
 
         match tag {
             b'Q' => {
-                let raw_sql = String::from_utf8_lossy(&payload).trim_matches('\0').to_string();
+                let raw_sql = String::from_utf8_lossy(&payload)
+                    .trim_matches('\0')
+                    .to_string();
                 Ok(Some(PgMessage::Query(raw_sql)))
             }
             b'p' => {
-                let password = String::from_utf8_lossy(&payload).trim_matches('\0').to_string();
+                let password = String::from_utf8_lossy(&payload)
+                    .trim_matches('\0')
+                    .to_string();
                 Ok(Some(PgMessage::Password(password)))
             }
             b'X' => Ok(Some(PgMessage::Terminate)),
@@ -125,7 +129,11 @@ impl Encoder<PgMessage> for PgWireCodec {
                 dst.put_i32(5);
                 dst.put_u8(status);
             }
-            PgMessage::ErrorResponse { severity: _, code, message } => {
+            PgMessage::ErrorResponse {
+                severity: _,
+                code,
+                message,
+            } => {
                 let err_bytes = PgMessage::build_error_response(&code, &message);
                 dst.extend_from_slice(&err_bytes);
             }

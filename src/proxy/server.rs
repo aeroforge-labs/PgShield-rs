@@ -134,7 +134,10 @@ async fn handle_client(
                     }
                     Err(e) => {
                         error!("Failed to connect to backend Postgres: {}", e);
-                        let err_msg = format!("PgShield Proxy Error: Unable to connect to backend database ({})", e);
+                        let err_msg = format!(
+                            "PgShield Proxy Error: Unable to connect to backend database ({})",
+                            e
+                        );
                         let err_resp = PgMessage::build_error_response("08006", &err_msg);
                         let ready_resp = PgMessage::build_ready_for_query(b'I');
 

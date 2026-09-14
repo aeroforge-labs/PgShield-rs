@@ -2,7 +2,11 @@
 use pgshield::config::Config;
 use pgshield::firewall::{QueryFirewall, RuleViolation};
 
-fn create_test_firewall(require_where: bool, require_limit: bool, block_ddl: bool) -> QueryFirewall {
+fn create_test_firewall(
+    require_where: bool,
+    require_limit: bool,
+    block_ddl: bool,
+) -> QueryFirewall {
     let config = Config {
         listen_addr: "127.0.0.1:6432".parse().unwrap(),
         backend_host: "127.0.0.1".to_string(),
@@ -19,7 +23,7 @@ fn create_test_firewall(require_where: bool, require_limit: bool, block_ddl: boo
 #[test]
 fn test_require_where_blocks_unbounded_update() {
     let fw = create_test_firewall(true, false, false);
-    
+
     // Unbounded UPDATE without WHERE should be blocked
     let res = fw.inspect_statement("UPDATE users SET active = false;");
     assert_eq!(res, Err(RuleViolation::MissingWhereClause));

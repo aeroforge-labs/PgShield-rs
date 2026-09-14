@@ -72,12 +72,11 @@ impl FirewallRule for BlockDDLRule {
 
     fn evaluate(&self, statement: &Statement) -> Result<(), RuleViolation> {
         match statement {
-            Statement::Drop { object_type, .. } => {
-                Err(RuleViolation::ForbiddenDDL(format!("DROP {:?}", object_type)))
-            }
-            Statement::Truncate { .. } => {
-                Err(RuleViolation::ForbiddenDDL("TRUNCATE".to_string()))
-            }
+            Statement::Drop { object_type, .. } => Err(RuleViolation::ForbiddenDDL(format!(
+                "DROP {:?}",
+                object_type
+            ))),
+            Statement::Truncate { .. } => Err(RuleViolation::ForbiddenDDL("TRUNCATE".to_string())),
             Statement::AlterTable { .. } => {
                 Err(RuleViolation::ForbiddenDDL("ALTER TABLE".to_string()))
             }

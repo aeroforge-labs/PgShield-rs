@@ -45,10 +45,7 @@ pub enum PgMessage {
     },
 
     /// Generic raw byte message for transparent forwarding
-    Raw {
-        tag: u8,
-        payload: Bytes,
-    },
+    Raw { tag: u8, payload: Bytes },
 }
 
 impl PgMessage {
@@ -56,7 +53,7 @@ impl PgMessage {
     pub fn build_error_response(code: &str, message: &str) -> Bytes {
         let mut buf = BytesMut::new();
         buf.put_u8(b'E');
-        
+
         // Reserve length header (i32)
         let len_pos = buf.len();
         buf.put_i32(0);
