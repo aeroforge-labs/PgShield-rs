@@ -1,4 +1,6 @@
 <!-- ------------------------------------------------------------------------------------------------------------------                                                                                                                                                                                #*eddiere -->
+> **Important**: You must check at least one option under **Type of Change** before submitting this pull request.
+
 ## Description
 
 Please describe the changes proposed in this pull request and the rationale behind them.
@@ -7,7 +9,7 @@ Related issue / discussion link: #
 
 ## Type of Change
 
-Please mark the applicable option with an `x`:
+Please mark at least one applicable option with an `x` (Required):
 
 - [ ] `bug`: Bug fix (non-breaking change fixing an issue)
 - [ ] `feat`: New feature (non-breaking change adding functionality)
@@ -22,6 +24,8 @@ Please mark the applicable option with an `x`:
 - 
 
 ## Checklist
+
+Please verify and check all applicable items with an `x`:
 
 - [ ] Code follows project formatting rules (`cargo fmt --check`)
 - [ ] Code passes all linters (`cargo clippy -- -D warnings`)
