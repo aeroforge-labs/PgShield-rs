@@ -1,0 +1,17 @@
+# --------------------------------------------------------------------------------------------------------------------                                                                                                                                                                                #*eddiere
+# Rust build artifacts
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+
+# IDE Files
+.idea/
+.vscode/
+*.swp
+*.swo
