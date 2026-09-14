@@ -25,7 +25,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         "Configuration loaded"
     );
 
-    let server = ProxyServer::new(config);
+    let server = ProxyServer::new(config).await?;
     server.run().await?;
 
     Ok(())

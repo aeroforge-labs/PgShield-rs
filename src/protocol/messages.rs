@@ -19,8 +19,11 @@ pub enum PgMessage {
     /// Simple Query ('Q')
     Query(String),
 
-    /// Password response ('p')
+    /// Password response ('p') — used for MD5 and SCRAM client-final messages
     Password(String),
+
+    /// Raw password bytes ('p') — for relaying SCRAM binary messages verbatim
+    PasswordBytes(Vec<u8>),
 
     /// Terminate connection ('X')
     Terminate,
@@ -28,8 +31,26 @@ pub enum PgMessage {
     /// Sync frame ('S')
     Sync,
 
-    /// AuthenticationOk response ('R' with type 0)
+    /// AuthenticationOk from backend ('R' with int32 = 0)
     AuthenticationOk,
+
+    /// AuthenticationMD5Password from backend ('R' with int32 = 5, 4-byte salt)
+    AuthenticationMD5Password { salt: [u8; 4] },
+
+    /// AuthenticationSASL from backend ('R' with int32 = 10), lists SASL mechanisms
+    AuthenticationSASL { mechanisms: Vec<String> },
+
+    /// AuthenticationSASLContinue from backend ('R' with int32 = 11), SCRAM server-first
+    AuthenticationSASLContinue { data: Vec<u8> },
+
+    /// AuthenticationSASLFinal from backend ('R' with int32 = 12), SCRAM server-final
+    AuthenticationSASLFinal { data: Vec<u8> },
+
+    /// BackendKeyData from backend ('K') — cancellation key
+    BackendKeyData { pid: u32, secret: u32 },
+
+    /// ParameterStatus from backend ('S') — key=value server params
+    ParameterStatus { name: String, value: String },
 
     /// ReadyForQuery response ('Z' with status e.g. b'I')
     ReadyForQuery(u8),
@@ -45,7 +66,7 @@ pub enum PgMessage {
     },
 
     /// Generic raw byte message for transparent forwarding
-    Raw { tag: u8, payload: Bytes },
+    Raw { tag: u8, payload: bytes::Bytes },
 }
 
 impl PgMessage {

@@ -63,6 +63,18 @@ pub struct Config {
     /// Block DDL statements (DROP, TRUNCATE, ALTER)
     #[arg(long, env = "FIREWALL_BLOCK_DDL", default_value_t = true)]
     pub block_ddl: bool,
+
+    /// Enable TLS for backend PostgreSQL connections (required for RDS, Supabase, Neon, Cloud SQL)
+    #[arg(long, env = "PGSHIELD_TLS_BACKEND", default_value_t = false)]
+    pub tls_backend: bool,
+
+    /// Verify backend TLS certificate against system trust roots (set false for self-signed certs)
+    #[arg(long, env = "PGSHIELD_TLS_VERIFY", default_value_t = true)]
+    pub tls_verify: bool,
+
+    /// Minimum idle backend connections kept warm in the connection pool
+    #[arg(long, env = "POOL_MIN_IDLE", default_value = "2")]
+    pub pool_min_idle: usize,
 }
 
 impl Config {
