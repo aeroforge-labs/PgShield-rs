@@ -28,10 +28,11 @@ impl PgBackendPool {
     }
 
     pub async fn connect_backend(&self) -> Result<TcpStream, std::io::Error> {
-        let _permit =
-            self.semaphore.acquire().await.map_err(|_| {
-                std::io::Error::new(std::io::ErrorKind::Other, "Pool semaphore closed")
-            })?;
+        let _permit = self
+            .semaphore
+            .acquire()
+            .await
+            .map_err(|_| std::io::Error::other("Pool semaphore closed"))?;
 
         TcpStream::connect(&self.backend_addr).await
     }

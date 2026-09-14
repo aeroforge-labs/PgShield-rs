@@ -77,7 +77,7 @@ impl PgMessage {
 
         // Calculate and patch message length
         let len = (buf.len() - len_pos) as i32;
-        (&mut buf[len_pos..len_pos + 4]).copy_from_slice(&len.to_be_bytes());
+        buf[len_pos..len_pos + 4].copy_from_slice(&len.to_be_bytes());
 
         buf.freeze()
     }

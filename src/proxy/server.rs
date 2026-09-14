@@ -127,7 +127,7 @@ async fn handle_client(
                             framed.get_mut().flush().await?;
 
                             // Check if ReadyForQuery ('Z') frame was returned
-                            if buf[..n].iter().any(|&b| b == b'Z') {
+                            if buf[..n].contains(&b'Z') {
                                 break;
                             }
                         }
