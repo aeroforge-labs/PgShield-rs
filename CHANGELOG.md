@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [Unreleased] - v0.2.0
+
+### Added
+- **True Warm Connection Pool:** Replaced the Semaphore-only concurrency gate with a channel-backed warm pool (`PgBackendPool`) that pre-opens idle backend TCP connections at startup and recycles them after each query, eliminating per-query connection overhead.
+- **PostgreSQL Auth Relay Passthrough:** Implemented full bi-directional authentication handshake relay between the client and the backend PostgreSQL server, supporting SCRAM-SHA-256 (SASL), MD5, and clear-text auth methods. PgShield-rs no longer responds `AuthenticationOk` unconditionally.
+- **Backend TLS Support:** Added optional TLS backend connection support via `tokio-rustls` and `webpki-roots`. Configurable via `--tls-backend` flag or `PGSHIELD_TLS_BACKEND=true` environment variable. Supports cloud PostgreSQL providers (AWS RDS, Supabase, Neon, GCP Cloud SQL).
+- **Reproducible Builds via Cargo.lock:** Committed `Cargo.lock` to version control to guarantee bit-exact reproducible CI builds.
+- **Benchmarking Harness:** Added `benchmarks/run_benchmarks.sh` pgbench automation script and `BENCHMARKS.md` performance documentation template with methodology and measurement tables.
+- **New Config Flags:** Added `--tls-backend`, `--tls-verify`, and `--pool-min-idle` CLI and environment variable options.
+
+### Changed
+- `PgMessage` enum extended with SCRAM/SASL auth variants: `AuthenticationMD5Password`, `AuthenticationSASL`, `AuthenticationSASLContinue`, `AuthenticationSASLFinal`, `BackendKeyData`, `ParameterStatus`, `PasswordBytes`.
+- `ProxyServer::new()` is now `async` to support warm pool pre-connection at startup.
+
+---
+
 ## [0.1.0] - 2026-09-14
 
 ### Added

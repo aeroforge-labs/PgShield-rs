@@ -1,4 +1,4 @@
 // --------------------------------------------------------------------------------------------------------------------                                                                                                                                                                                #*eddiere
 pub mod manager;
 
-pub use manager::PgBackendPool;
+pub use manager::{BackendStream, PgBackendPool};

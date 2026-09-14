@@ -12,10 +12,13 @@ fn create_test_firewall(
         backend_host: "127.0.0.1".to_string(),
         backend_port: 5432,
         pool_max_size: 10,
+        pool_min_idle: 0,
         strict_firewall: true,
         require_where,
         require_limit,
         block_ddl,
+        tls_backend: false,
+        tls_verify: true,
     };
     QueryFirewall::new(&config)
 }

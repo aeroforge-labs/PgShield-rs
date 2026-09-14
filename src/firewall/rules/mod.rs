@@ -30,19 +30,14 @@ impl FirewallRule for RequireWhereRule {
 
     fn evaluate(&self, statement: &Statement) -> Result<(), RuleViolation> {
         match statement {
-            Statement::Update { selection, .. } => {
-                if selection.is_none() {
-                    return Err(RuleViolation::MissingWhereClause);
-                }
+            Statement::Update {
+                selection: None, ..
+            } => Err(RuleViolation::MissingWhereClause),
+            Statement::Delete(delete) if delete.selection.is_none() => {
+                Err(RuleViolation::MissingWhereClause)
             }
-            Statement::Delete(delete) => {
-                if delete.selection.is_none() {
-                    return Err(RuleViolation::MissingWhereClause);
-                }
-            }
-            _ => {}
+            _ => Ok(()),
         }
-        Ok(())
     }
 }
 
@@ -54,12 +49,12 @@ impl FirewallRule for RequireLimitRule {
     }
 
     fn evaluate(&self, statement: &Statement) -> Result<(), RuleViolation> {
-        if let Statement::Query(query) = statement {
-            if query.limit.is_none() {
-                return Err(RuleViolation::MissingLimitClause);
+        match statement {
+            Statement::Query(query) if query.limit.is_none() => {
+                Err(RuleViolation::MissingLimitClause)
             }
+            _ => Ok(()),
         }
-        Ok(())
     }
 }
 

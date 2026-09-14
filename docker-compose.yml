@@ -25,9 +25,12 @@ services:
       POSTGRES_BACKEND_HOST: "postgres-db"
       POSTGRES_BACKEND_PORT: "5432"
       POOL_MAX_SIZE: "50"
+      POOL_MIN_IDLE: "2"
       FIREWALL_STRICT_MODE: "true"
       FIREWALL_REQUIRE_WHERE: "true"
       FIREWALL_BLOCK_DDL: "true"
+      PGSHIELD_TLS_BACKEND: "false"
+      PGSHIELD_TLS_VERIFY: "true"
     ports:
       - "6432:6432"
     depends_on:
