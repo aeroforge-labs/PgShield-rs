@@ -38,8 +38,16 @@ Feature requests are welcome! Please open an issue detailing:
 - Proposed solution or API design
 - Potential impact on proxy latency or protocol compatibility
 
+### Branching Strategy & Workflow
+
+We follow a Git-flow inspired branching model for stability and automated CI:
+
+- 🚀 **`main`**: Production-ready stable branch. Direct commits are restricted. All releases and tags are cut from `main`.
+- 🛠️ **`develop`**: Active integration branch for upcoming features. PRs from feature branches should target `develop`.
+- 🌿 **`feature/*` or `fix/*`**: Contributor branches created for specific features or bug fixes.
+
 ### Pull Requests
-1. Fork the repository and create your branch from `main`:
+1. Fork the repository and create your feature branch from `develop`:
    ```bash
    git checkout -b feature/my-cool-rule
    ```
