@@ -18,6 +18,7 @@
 - [Nginx & Infrastructure Topologies](#-nginx--infrastructure-topologies)
 - [Detailed Documentation](#-detailed-documentation)
 - [Roadmap & Benchmarking](#-roadmap--benchmarking)
+- [Contributing & Governance](#-contributing--governance)
 
 ---
 
@@ -136,5 +137,15 @@ For exhaustive deep-dives on architectural design, failure modes, comparative an
 
 ---
 
+## 🤝 Contributing & Governance
+
+Contributions are welcome! Please see our open-source governance guidelines:
+- 📖 **[CONTRIBUTING.md](file:///c:/Users/USER/Desktop/DEV-EDDIERE/OPEN-SOURCE/PgShield/CONTRIBUTING.md)**: Development setup & guide for adding custom firewall rules.
+- 🛡️ **[SECURITY.md](file:///c:/Users/USER/Desktop/DEV-EDDIERE/OPEN-SOURCE/PgShield/SECURITY.md)**: Vulnerability reporting and security response process.
+- 📜 **[CODE_OF_CONDUCT.md](file:///c:/Users/USER/Desktop/DEV-EDDIERE/OPEN-SOURCE/PgShield/CODE_OF_CONDUCT.md)**: Community standards and pledge.
+- 📋 **[CHANGELOG.md](file:///c:/Users/USER/Desktop/DEV-EDDIERE/OPEN-SOURCE/PgShield/CHANGELOG.md)**: Version history and release notes.
+
+---
+
 ## 📄 License
-MIT License. Developed as an open-source high-resiliency PostgreSQL infrastructure proxy.
+MIT License. See [LICENSE](file:///c:/Users/USER/Desktop/DEV-EDDIERE/OPEN-SOURCE/PgShield/LICENSE) for details. Developed as an open-source high-resiliency PostgreSQL infrastructure proxy.
