@@ -1,4 +1,4 @@
-# PgShield-rs 🛡️
+# PgShield-rs
 ### Asynchronous PostgreSQL Wire Protocol Proxy, Multiplexer & Query Firewall in Rust
 
 [![Rust](https://img.shields.io/badge/Language-Rust-orange.svg)](https://www.rust-lang.org/)
@@ -9,20 +9,20 @@
 
 ---
 
-## 📌 Quick Navigation
+## Quick Navigation
 
-- [Overview & Problem Statement](#-overview--problem-statement)
-- [Key Features](#-key-features)
-- [System Architecture](#-system-architecture)
-- [Real-World Use Cases](#-real-world-use-cases)
-- [Nginx & Infrastructure Topologies](#-nginx--infrastructure-topologies)
-- [Detailed Documentation](#-detailed-documentation)
-- [Roadmap & Benchmarking](#-roadmap--benchmarking)
-- [Contributing & Governance](#-contributing--governance)
+- [Overview & Problem Statement](#overview--problem-statement)
+- [Key Features](#key-features)
+- [System Architecture](#system-architecture)
+- [Real-World Use Cases](#real-world-use-cases)
+- [Nginx & Infrastructure Topologies](#nginx--infrastructure-topologies)
+- [Detailed Documentation](#detailed-documentation)
+- [Roadmap & Benchmarking](#roadmap--benchmarking)
+- [Contributing & Governance](#contributing--governance)
 
 ---
 
-## 💡 Overview & Problem Statement
+## Overview & Problem Statement
 
 Modern cloud applications relying on auto-scaling compute pods or serverless execution models (AWS Lambda, Cloudflare Workers, Next.js Edge APIs) frequently exhaust PostgreSQL connection limits (`max_connections`). 
 
@@ -32,7 +32,7 @@ While traditional poolers like **PgBouncer** or **AWS RDS Proxy** handle connect
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 - **Layer 7 PostgreSQL Wire Protocol v3.0 Demuxer**: Direct decoding of startup, authentication, parameter bind, and query frames using `tokio-util` and `bytes`.
 - **Async Statement Multiplexing**: Manages thousands of incoming client TCP connections while maintaining a conservative pool of warm backend connections (e.g., 50–100 connections).
@@ -42,7 +42,7 @@ While traditional poolers like **PgBouncer** or **AWS RDS Proxy** handle connect
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 PgShield-rs operates at Layer 7 by intercepting PostgreSQL v3.0 protocol traffic:
 
@@ -84,7 +84,7 @@ pub async fn handle_query_frame(
 
 ---
 
-## 🎯 Real-World Use Cases
+## Real-World Use Cases
 
 1. **Serverless & Kubernetes Connection Burst Protection**: Prevents connection exhaustion when thousands of short-lived lambdas or containers spin up simultaneously.
 2. **Rogue Query Mitigation**: Instantly drops queries missing `WHERE` clauses on `UPDATE`/`DELETE`, rejecting unindexed full-table scans or `SELECT *` without `LIMIT`.
@@ -93,7 +93,7 @@ pub async fn handle_query_frame(
 
 ---
 
-## 🌐 Nginx & Infrastructure Topologies
+## Nginx & Infrastructure Topologies
 
 ### Standard Web Architecture
 Nginx manages web traffic (HTTP/HTTPS), while PgShield-rs manages database traffic (PostgreSQL protocol):
@@ -121,14 +121,14 @@ stream {
 
 ---
 
-## 📚 Detailed Documentation
+## Detailed Documentation
 
 For exhaustive deep-dives on architectural design, failure modes, comparative analysis (PgBouncer vs RDS Proxy vs PgShield-rs), and deployment guides, see:
-👉 **[ARCHITECTURE_AND_USE_CASES.md](file:///c:/Users/USER/Desktop/DEV-EDDIERE/OPEN-SOURCE/PgShield/ARCHITECTURE_AND_USE_CASES.md)**
+**[ARCHITECTURE_AND_USE_CASES.md](file:///c:/Users/USER/Desktop/DEV-EDDIERE/OPEN-SOURCE/PgShield/ARCHITECTURE_AND_USE_CASES.md)**
 
 ---
 
-## 🛣️ Roadmap & Benchmarking
+## Roadmap & Benchmarking
 
 - **Phase 1: Wire Protocol State Machine** (SSL negotiation, MD5/SCRAM-SHA-256 auth relay, `StartupMessage`, `ReadyForQuery`).
 - **Phase 2: Statement Multiplexing** (Transaction-level connection pooler with `deadpool`/`bb8`).
@@ -137,15 +137,15 @@ For exhaustive deep-dives on architectural design, failure modes, comparative an
 
 ---
 
-## 🤝 Contributing & Governance
+## Contributing & Governance
 
 Contributions are welcome! Please see our open-source governance guidelines:
-- 📖 **[CONTRIBUTING.md](file:///c:/Users/USER/Desktop/DEV-EDDIERE/OPEN-SOURCE/PgShield/CONTRIBUTING.md)**: Development setup & guide for adding custom firewall rules.
-- 🛡️ **[SECURITY.md](file:///c:/Users/USER/Desktop/DEV-EDDIERE/OPEN-SOURCE/PgShield/SECURITY.md)**: Vulnerability reporting and security response process.
-- 📜 **[CODE_OF_CONDUCT.md](file:///c:/Users/USER/Desktop/DEV-EDDIERE/OPEN-SOURCE/PgShield/CODE_OF_CONDUCT.md)**: Community standards and pledge.
-- 📋 **[CHANGELOG.md](file:///c:/Users/USER/Desktop/DEV-EDDIERE/OPEN-SOURCE/PgShield/CHANGELOG.md)**: Version history and release notes.
+- **[CONTRIBUTING.md](file:///c:/Users/USER/Desktop/DEV-EDDIERE/OPEN-SOURCE/PgShield/CONTRIBUTING.md)**: Development setup & guide for adding custom firewall rules.
+- **[SECURITY.md](file:///c:/Users/USER/Desktop/DEV-EDDIERE/OPEN-SOURCE/PgShield/SECURITY.md)**: Vulnerability reporting and security response process.
+- **[CODE_OF_CONDUCT.md](file:///c:/Users/USER/Desktop/DEV-EDDIERE/OPEN-SOURCE/PgShield/CODE_OF_CONDUCT.md)**: Community standards and pledge.
+- **[CHANGELOG.md](file:///c:/Users/USER/Desktop/DEV-EDDIERE/OPEN-SOURCE/PgShield/CHANGELOG.md)**: Version history and release notes.
 
 ---
 
-## 📄 License
+## License
 MIT License. See [LICENSE](file:///c:/Users/USER/Desktop/DEV-EDDIERE/OPEN-SOURCE/PgShield/LICENSE) for details. Developed as an open-source high-resiliency PostgreSQL infrastructure proxy.

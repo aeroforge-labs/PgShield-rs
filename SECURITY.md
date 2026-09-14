@@ -1,4 +1,4 @@
-# Security Policy 🛡️
+# Security Policy
 
 The security of **PgShield-rs** and the databases it protects is our top priority. We appreciate the work of security researchers and developers in keeping the open-source ecosystem safe.
 
@@ -8,10 +8,10 @@ The security of **PgShield-rs** and the databases it protects is our top priorit
 
 Only the latest release version on `main` receives active security updates and patches:
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 0.1.x   | :white_check_mark: |
-| < 0.1.0 | :x:                |
+| Version | Supported |
+| ------- | --------- |
+| 0.1.x   | Yes       |
+| < 0.1.0 | No        |
 
 ---
 

@@ -124,11 +124,11 @@ pub async fn handle_query_frame(
 | :--- | :---: | :---: | :---: |
 | **Primary Focus** | Connection Pooling | AWS-managed Connection Pooling | Connection Multiplexing + Real-Time SQL AST Security |
 | **Protocol Support** | Postgres v3.0 | Postgres & MySQL | Postgres v3.0 |
-| **SQL Intelligence** | ❌ Opaque Forwarder | ❌ Opaque Forwarder | ✅ **Full AST Tokenization (`sqlparser-rs`)** |
-| **Query Firewalling** | ❌ None | ❌ None | ✅ **AST-based Rule Enforcement** |
-| **Unbounded Query Mitigation** | ❌ No | ❌ No | ✅ **Rejects missing `WHERE` / `LIMIT` clauses** |
-| **Proxy Overhead Latency** | ~0.1 – 0.3 ms | ~1.0 – 3.0 ms (Managed Cloud) | ✅ **< 0.5 ms (Native Async Rust)** |
-| **Deployment Flexibility** | Open Source / Self-hosted | AWS Only | ✅ **Open Source / Container / Sidecar / Gateway** |
+| **SQL Intelligence** | No (Opaque Forwarder) | No (Opaque Forwarder) | **Full AST Tokenization (`sqlparser-rs`)** |
+| **Query Firewalling** | No | No | **AST-based Rule Enforcement** |
+| **Unbounded Query Mitigation** | No | No | **Rejects missing `WHERE` / `LIMIT` clauses** |
+| **Proxy Overhead Latency** | ~0.1 – 0.3 ms | ~1.0 – 3.0 ms (Managed Cloud) | **< 0.5 ms (Native Async Rust)** |
+| **Deployment Flexibility** | Open Source / Self-hosted | AWS Only | **Open Source / Container / Sidecar / Gateway** |
 
 ---
 

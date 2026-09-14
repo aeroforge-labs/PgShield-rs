@@ -1,10 +1,10 @@
-# Contributing to PgShield-rs 🛡️
+# Contributing to PgShield-rs
 
 Thank you for your interest in contributing to **PgShield-rs**! We welcome contributions from the community to help make PostgreSQL cloud infrastructure safer, faster, and more resilient.
 
 ---
 
-## 📜 Table of Contents
+## Table of Contents
 
 - [Code of Conduct](#code-of-conduct)
 - [How to Contribute](#how-to-contribute)
@@ -42,9 +42,9 @@ Feature requests are welcome! Please open an issue detailing:
 
 We follow a Git-flow inspired branching model for stability and automated CI:
 
-- 🚀 **`main`**: Production-ready stable branch. Direct commits are restricted. All releases and tags are cut from `main`.
-- 🛠️ **`develop`**: Active integration branch for upcoming features. PRs from feature branches should target `develop`.
-- 🌿 **`feature/*` or `fix/*`**: Contributor branches created for specific features or bug fixes.
+- **`main`**: Production-ready stable branch. Direct commits are restricted. All releases and tags are cut from `main`.
+- **`develop`**: Active integration branch for upcoming features. PRs from feature branches should target `develop`.
+- **`feature/*` or `fix/*`**: Contributor branches created for specific features or bug fixes.
 
 ### Pull Requests
 1. Fork the repository and create your feature branch from `develop`:
